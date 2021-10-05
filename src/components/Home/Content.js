@@ -220,15 +220,427 @@ function Content() {
               </div>
             </li>
             <div className="read-more">
-              <a href="/#">Xem Thêm</a>
+              <a href="/#">Xem thêm</a>
             </div>
           </ul>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+          <ul>
+            <li>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+            </li>
+            <div className="read-more">
+              <a href="/#">Xem thêm</a>
+            </div>
+          </ul>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 3</h2>
+          <ul>
+            <li>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+              <div className="inner-item">
+                <div className="label-sale">
+                  <span className="label-sale-value">35%</span>
+                </div>
+                <div className="img-item">
+                  <a href="/#">
+                    <img src="/images/products/product01.jpg" alt="" />
+                  </a>
+                </div>
+                <div className="name-item">
+                  <h2 className="product-name-seo">
+                    <a href="/#">Tái Tạo Tổ Chức (Tái bản 2020)</a>
+                  </h2>
+                </div>
+                <div className="price-product">
+                  <span className="price">123.500đ</span>
+                  <span className="delete-price">190.000đ</span>
+                </div>
+                <div className="rating-container"></div>
+              </div>
+            </li>
+            <div className="read-more">
+              <a href="/#">Xem thêm</a>
+            </div>
+          </ul>
         </TabPanel>
       </Tabs>
     </Wrap>
@@ -267,13 +679,13 @@ const Wrap = styled.section`
   /* Content here */
   .react-tabs__tab-panel {
     border-top: 1px solid #f0f0f0;
+    padding: 10px 0;
     li {
       display: grid;
-
-      @media only screen and (max-width: 4000px) {
+      @media only screen and (max-width: 3840px) {
         grid-template-columns: repeat(5, 1fr);
       }
-      @media only screen and (max-width: 992px) {
+      @media only screen and (max-width: 992px) and (min-width: 769px) {
         grid-template-columns: repeat(4, 1fr);
       }
       @media only screen and (max-width: 768px) {
@@ -343,9 +755,34 @@ const Wrap = styled.section`
         }
       }
     }
-    @media screen and (max-width: 992px) {
-      .read-more {
+
+    .read-more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @media screen and (max-width: 992px) {
+        a {
+          width: 140px;
+        }
+      }
+      @media screen and (min-width: 993px) {
         height: 80px;
+        a {
+          width: 220px;
+        }
+      }
+      a {
+        padding: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        background-image: linear-gradient(to right, #ff9800, #f7695d);
+        border-radius: 50px;
+        box-shadow: 2px 3px 5px #ccc;
+        &:hover {
+          box-shadow: 0px 6px 8px #e6e6e6;
+        }
       }
     }
   }

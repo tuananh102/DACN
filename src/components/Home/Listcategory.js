@@ -1,19 +1,10 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Col, Container } from "react-bootstrap";
-import styled from "styled-components";
-import ImgSlider from "./ImgSlider";
-import Viewers from "./Viewers";
-import IconMenu from "./IconMenu";
-import Content from "./Content";
+import React from 'react'
+import styled from 'styled-components';
 
-function Home() {
+function Listcategory(props) {
   return (
-    <ContainerMain>
-      <Container fluid>
-        <Wrap className="row">
-        <ListCategory className="col-lg-3 list-mobile-hidden">
-            <div className="title"> Danh Mục Sản Phẩm</div>
+    <ListCategory className={props.className}>
+      <div className="title"> Danh Mục Sản Phẩm</div>
             <div className="DMSP">
               <ul style={{ padding: "0" }}>
                 <li>
@@ -68,44 +59,13 @@ function Home() {
                 </li>
               </ul>
             </div>
-          </ListCategory>
-          <Col className="col-lg-9">
-            <ImgSlider />
-          </Col>
-        </Wrap>
-      </Container>
-      <Viewers />
-      <IconMenu />
-      <Content />
-    </ContainerMain>
-  );
+    </ListCategory>
+  )
 }
 
-export default Home;
-
-const Wrap = styled.div`
-  margin: 20px -20px 0px -20px;
-    @media screen and (max-width: 992px) {
-      .list-mobile-hidden {
-    display: none;
-  }
-}
-`;
-
-const ContainerMain = styled.main`
-  min-height: calc(100vh - 70px);
-  padding: 0 calc(3.5vw + 5px);
-  position: relative;
-  overflow-x: hidden;
-`;
+export default Listcategory
 
 const ListCategory = styled.div`
-
-@media screen and (max-width: 600px) {
-  div.example {
-    display: none;
-  }
-}
   .DMSP {
     max-height: 340px;
   }

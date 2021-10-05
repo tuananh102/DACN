@@ -125,6 +125,7 @@ export default IconMenu;
 const Wrap = styled.div`
   background-color: #fff;
   text-align: center;
+  margin: auto;
   padding: 15px 4px !important;
   @media only screen and (max-width: 768px){
     display: grid;
