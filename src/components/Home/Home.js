@@ -5,13 +5,14 @@ import styled from "styled-components";
 import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
 import IconMenu from "./IconMenu";
+import Content from "./Content";
 
 function Home() {
   return (
     <ContainerMain>
       <Container fluid>
         <Wrap className="row">
-        <ListCategory className="col-lg-3 ">
+        <ListCategory className="col-lg-3 list-mobile-hidden">
             <div className="title"> Danh Mục Sản Phẩm</div>
             <div className="DMSP">
               <ul style={{ padding: "0" }}>
@@ -75,6 +76,7 @@ function Home() {
       </Container>
       <Viewers />
       <IconMenu />
+      <Content />
     </ContainerMain>
   );
 }
@@ -83,6 +85,11 @@ export default Home;
 
 const Wrap = styled.div`
   margin: 20px -20px 0px -20px;
+    @media screen and (max-width: 992px) {
+      .list-mobile-hidden {
+    display: none;
+  }
+}
 `;
 
 const ContainerMain = styled.main`
@@ -93,6 +100,12 @@ const ContainerMain = styled.main`
 `;
 
 const ListCategory = styled.div`
+
+@media screen and (max-width: 600px) {
+  div.example {
+    display: none;
+  }
+}
   .DMSP {
     max-height: 340px;
   }

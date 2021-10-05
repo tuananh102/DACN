@@ -9,7 +9,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_flashsale.png"
+              src="/images/icons/ico_flashsale.png"
               alt=""
             />
           </a>
@@ -20,7 +20,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_PCSC.png"
+              src="/images/icons/ico_PCSC.png"
               alt=""
             />
           </a>
@@ -31,7 +31,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico-xuhuong.png"
+              src="/images/icons/ico-xuhuong.png"
               alt=""
             />
           </a>
@@ -42,7 +42,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_covid-2.png"
+              src="/images/icons/ico_covid-2.png"
               alt=""
             />
           </a>
@@ -53,7 +53,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_vpp_hot.png"
+              src="/images/icons/ico_vpp_hot.png"
               alt=""
             />
           </a>
@@ -64,7 +64,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_goiy.png"
+              src="/images/icons/ico_goiy.png"
               alt=""
             />
           </a>
@@ -75,7 +75,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_game_hub.png"
+              src="/images/icons/ico_game_hub.png"
               alt=""
             />
           </a>
@@ -86,7 +86,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_dochoi.png"
+              src="/images/icons/ico_dochoi.png"
               alt=""
             />
           </a>
@@ -97,7 +97,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_mgg.png"
+              src="/images/icons/ico_mgg.png"
               alt=""
             />
           </a>
@@ -108,7 +108,7 @@ function IconMenu() {
         <div>
           <a href="/#">
             <img
-              src="/images/icons-menu/ico_manga.png"
+              src="/images/icons/ico_manga.png"
               alt=""
             />
           </a>
