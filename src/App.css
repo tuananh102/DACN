@@ -13,7 +13,17 @@ body{
 }
 a{
   text-decoration: none;
+  color: #333;
 }
 a:focus-visible{
   outline: none;
+}
+ul{
+  padding: 0!important;
+}
+li{
+  list-style-type: none;
+}
+.row {
+  --bs-gutter-x: 0 !important;
 }

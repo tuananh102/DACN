@@ -49,8 +49,6 @@ const Logo = styled.img`
 `;
 
 const Search = styled.div`
-  /* display: flex;
-  flex:1; */
   position: relative;
   width: calc(100% - 590px);
   margin: 6px 0 0 30px;
