@@ -145,7 +145,13 @@ function Footer() {
             </div>
             <div className="row">
               <div className="right-footer-title">Liên hệ</div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 col-md-6">
+                <i className="fas fa-phone-alt"></i>
+                <a href="tel:+1900636467">
+                  <span>&nbsp;1900636467</span>
+                </a>
+              </div>
+              <div className="col-lg-8 col-md-6">
                 <i className="fas fa-map-marker-alt"></i>
                 <a
                   href="https://g.page/fahasa6062?share"
@@ -153,12 +159,6 @@ function Footer() {
                   rel="noreferrer"
                 >
                   <span>&nbsp;60-62 Lê Lợi, Q.1, TP. HCM</span>
-                </a>
-              </div>
-              <div className="col-lg-4">
-                <i className="fas fa-phone-alt"></i>
-                <a href="tel:+1900636467">
-                  <span>&nbsp;1900636467</span>
                 </a>
               </div>
               

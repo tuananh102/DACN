@@ -260,11 +260,13 @@ const Wrap = styled.section`
     background: url("/images/fa-angle-right_32_8_8e8c8c_none.png") no-repeat
       100% 100% !important;
     right: -5px;
+    z-index: 5!important;
   }
   .slick-prev {
     background: url("/images/fa-angle-left_32_8_8e8c8c_none.png") no-repeat 100%
       100% !important;
     left: -5px;
+    z-index: 5!important;
   }
 
   .slick-next,
