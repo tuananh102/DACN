@@ -320,9 +320,12 @@ const Wrap = styled.section`
       .inner-item {
         //border: 1px solid #f0f0f0;
         position: relative;
-        padding: 0;
+        padding: 1px;
         overflow: hidden;
         text-align: center;
+        &:hover{
+          box-shadow: 0px 0px 4px 2px rgb(0 0 0 / 10%);
+        }
         .label-sale {
           position: absolute;
           width: 44px;

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 function Header() {
   const [showHidden, setShow] = useState(false);
@@ -64,12 +65,14 @@ function Header() {
       <div className="nav-mobile">
         <div className="logo-header-container">
           <div className="logo-header">
-            <img src="/images/logo.png" alt="" />
+            <Link to="/">
+              <img src="/images/logo.png" alt="" />
+            </Link>
           </div>
         </div>
         <div className="row">
           <div className="show-menu">
-            <i class="fas fa-bars" onClick={handleShow}></i>
+            <i className="fas fa-bars" onClick={handleShow}></i>
           </div>
           <div className="search-bar">
             <input placeholder="Tìm kiếm sản phẩm mong muốn..." type="text" />
@@ -85,7 +88,9 @@ function Header() {
       </div>
       <div className="row navbar-desktop">
         <div className="col-lg-3 logo-header">
-          <img src="/images/logo.png" />
+          <Link to="/">
+            <img src="/images/logo.png" alt="" />
+          </Link>
         </div>
         <div className="col-lg-6">
           <div className="search-bar">
@@ -118,16 +123,15 @@ function Header() {
 
 export default Header;
 
-const Overlay =styled.div`
+const Overlay = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
   background-color: #333;
   opacity: 0.5;
   z-index: 9;
-  display: ${(props)=>(props.show ? "block": "none")};
-
-`
+  display: ${(props) => (props.show ? "block" : "none")};
+`;
 const Nav = styled.nav`
   height: 93px;
   .navbar-desktop {
@@ -261,11 +265,11 @@ const Nav = styled.nav`
         }
       }
     }
-    .right-nav{
+    .right-nav {
       width: 80px;
       display: flex;
       align-items: center;
-      i{
+      i {
         padding: 0 10px;
         font-size: 20px;
       }
@@ -286,8 +290,7 @@ const SideBar = styled.div`
   transition: 300ms all cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: auto;
   .title {
-    
-      color: #f7941e;
+    color: #f7941e;
     display: flex;
     align-items: center;
     margin: 0 -20px;
