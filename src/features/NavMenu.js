@@ -617,6 +617,23 @@ const Wrap = styled.section`
             align-items: center;
             height: auto;
             font-size: 15px;
+            position: relative;
+            &:after {
+              content: "";
+              height: 2px;
+              background-color: #f7941e;
+              position: absolute;
+              left: 40px;
+              right: 2px;
+              bottom: 0;
+              transform: scaleX(0);
+              transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94)  ;
+            }
+            &:hover {
+              &:after {
+                transform: scaleX(1);
+              }
+            }
           }
           img {
             width: 20%;
