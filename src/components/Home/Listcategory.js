@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 
 function Listcategory(props) {
   return (
@@ -8,9 +10,9 @@ function Listcategory(props) {
       <div className="DMSP">
         <ul style={{ padding: "0" }}>
           <li>
-            <a href="about.asp" className="dropdown">
+            <Link to="/products" className="dropdown">
               Sách trong nước
-            </a>
+            </Link>
           </li>
           <li>
             <a href="sachtrongnuoc.asp">Foreign Books</a>

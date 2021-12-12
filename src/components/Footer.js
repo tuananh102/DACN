@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Footer() {
@@ -90,10 +91,10 @@ function Footer() {
                 <div className="right-footer-content">
                   <ul>
                     <li>
-                      <a href="/#">Điều khoản sử dụng</a>
+                      <Link to="/terms-of-use">Điều khoản sử dụng</Link>
                     </li>
                     <li>
-                      <a href="/#">Chính sách bảo mật</a>
+                      <Link to="/privacy-policy">Chính sách bảo mật</Link>
                     </li>
                     <li>
                       <a href="/#">Giới thiệu Fahasa</a>
@@ -128,7 +129,7 @@ function Footer() {
                 <div className="right-footer-content">
                   <ul>
                     <li>
-                      <a href="/#">Đăng nhập/Tạo mới tài khoản</a>
+                      <Link to="/account">Đăng nhập/Tạo mới tài khoản</Link>
                     </li>
                     <li>
                       <a href="/#">Thay đổi địa chỉ khách hàng</a>
@@ -256,6 +257,7 @@ const Container = styled.div`
         right: 2px;
         top: 2px;
         bottom: 2px;
+        transition: all 0.3s;
         &:hover {
           background-color: #cc0000;
         }

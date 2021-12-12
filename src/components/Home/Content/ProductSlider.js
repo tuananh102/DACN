@@ -1,508 +1,36 @@
-import React from "react";
+import React , { useState, useEffect }from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 
-const products = [
-  {
-    id: 1,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 2,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 3,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 4,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 5,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 6,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 7,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 8,
-    name: "Sách Giáo Khoa Bộ Lớp 1 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 1,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 11,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 12,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 13,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 14,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 15,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 16,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 17,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 18,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c2-tnxh.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 21,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 22,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 23,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 24,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 25,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 26,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 27,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 28,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 2,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 31,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 32,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 33,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 34,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 35,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 36,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 37,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 38,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 3,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 41,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 42,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 43,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 44,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 45,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 46,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 47,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 48,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 4,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 51,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 52,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 53,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 54,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 55,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 56,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 57,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-  {
-    id: 58,
-    name: "Sách Giáo Khoa Bộ Lớp 2 Cánh Diều - Sách Bài Học (Bộ 9 Cuốn) (2021)",
-    catid: 5,
-    img: "/images/products/sgk-c1-canhdieu.jpg",
-    percentSale: null,
-    price: 199000,
-    delPrice: null,
-    creatAt: null,
-  },
-];
 
 function ProductSlider(props) {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch(process.env.REACT_APP_API+"book")
+    .then((res) => {
+      console.log(res);
+      return res.json();
+    })
+    .then((data) => { console.log(data);
+      return setProducts(data)})
+  }, [])
   const productData = products
-    .filter((propducts) => props.id === propducts.catid)
+    .filter((propducts) => props.id === propducts.catId)
     .map((item, index) => {
       return (
         <div key={index.toString()} className="inner-item">
-          {item.percentSale && (
+          {/* {item.price && (
             <div className="label-sale">
               <span className="label-sale-value">
-                {item.percentSale}
-                {item.percentSale && "%"}
+                {item.price}
+                {item.price && "%"}
               </span>
             </div>
-          )}
+          )} */}
           <div className="img-item">
             <a href="/#">
-              <img src={item.img} alt="" />
+              <img src={"../images/products/" + item.img} alt="hehe" />
             </a>
           </div>
           <div className="name-item">
@@ -514,18 +42,18 @@ function ProductSlider(props) {
             <div>
               <span className="price">
                 <NumberFormat
-                  value={item.price}
+                  value={item.salePrice}
                   displayType="text"
                   thousandSeparator={true}
                   suffix=" đ"
                 />
               </span>
               <span className="discount-percent">
-                {item.delPrice &&
-                  ((item.delPrice - item.price) * 100) / item.price + "%"}
+                {item.price &&
+                  (Math.round(100-(item.salePrice/item.price)*100))+ "%"}
               </span>
             </div>
-            <span className="delete-price">{item.delPrice}</span>
+            <span className="delete-price">{item.price}</span>
           </div>
           <div className="rating-container"></div>
         </div>

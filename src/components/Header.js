@@ -105,14 +105,22 @@ function Header() {
             <div className="col notification-hidden">
               <i className="far fa-bell"></i>
               <span>Thông báo</span>
+              <div className="notification-number">
+                <span>0</span>
+              </div>
             </div>
-            <div className="col">
+            <div className="col cart">
               <i className="fas fa-shopping-cart"></i>
               <span>Giỏ hàng</span>
+              <div className="cart-number">
+                <span>0</span>
+              </div>
             </div>
-            <div className="col">
-              <i className="fas fa-sign-in-alt"></i>
-              <span>Đăng nhập</span>
+            <div className="col account">
+              <Link to="/account">
+                <i className="fas fa-sign-in-alt"></i>
+                <span>Đăng nhập</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -195,6 +203,15 @@ const Nav = styled.nav`
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 500;
+          color: #f7941e;
+        }
         span {
           padding-top: 5px;
           user-select: none;
@@ -202,6 +219,22 @@ const Nav = styled.nav`
       }
       i {
         font-size: 17px;
+      }
+      .cart,
+      .notification-hidden {
+        position: relative;
+        .cart-number,
+        .notification-number {
+          width: 25px;
+          text-align: center;
+          color: white;
+          position: absolute;
+          top: 0;
+          right: 25%;
+          background: #2ed62e;
+          border-radius: 10px;
+          padding: 0 5px;
+        }
       }
     }
   }

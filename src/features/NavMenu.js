@@ -456,7 +456,7 @@ function NavMenu() {
   let displayContent = open ? "list-content-container row" : "none";
   return (
     <Wrap>
-      <div className="nav-container row">
+      <div className="nav-container row" onMouseLeave={()=>setOpen(false)}>
         <div className="col-lg-3 list-category">
           <Button
             onMouseEnter={() => setOpen(true)}
@@ -486,37 +486,37 @@ function NavMenu() {
           <div className="icon-nav-container">
             <div className="flash-sale">
               <Link to="flashsale">
-                <img src="./images/icons/ico_flashsale.png" alt="" />
+                <img src="/images/icons/ico_flashsale.png" alt="" />
                 Flash Sale
               </Link>
             </div>
             <div className="mgg">
               <Link to="mgg">
-                <img src="./images/icons/ico_mgg.png" alt="" />
+                <img src="/images/icons/ico_mgg.png" alt="" />
                 Mã giảm giá
               </Link>
             </div>
             <div className="trend">
               <Link to="xuhuong">
-                <img src="./images/icons/ico-xuhuong.png" alt="" />
+                <img src="/images/icons/ico-xuhuong.png" alt="" />
                 Xu hướng
               </Link>
             </div>
             <div className="bxh">
               <Link to="bookaward">
-                <img src="./images/icons/ico_bookaward.png" alt="" />
+                <img src="/images/icons/ico_bookaward.png" alt="" />
                 Bảng xếp hạng
               </Link>
             </div>
             <div className="member">
               <Link to="dacquyen">
-                <img src="./images/icons/ico_dacquyen.png" alt="" />
+                <img src="/images/icons/ico_dacquyen.png" alt="" />
                 Thành viên
               </Link>
             </div>
             <div className="recommend">
               <Link to="goiy">
-                <img src="./images/icons/ico_goiy.png" alt="" />
+                <img src="/images/icons/ico_goiy.png" alt="" />
                 Gợi ý cho bạn
               </Link>
             </div>
