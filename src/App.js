@@ -1,10 +1,11 @@
+import React from "react";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-// import Dashboard from "./components/Dashboard";
 import Home from "./pages/Home.js";
 import Product from "./pages/Product";
 import NavMenu from "./features/NavMenu";
@@ -13,27 +14,32 @@ import SignIn from "./pages/SignIn";
 import TermOfUse from "./pages/TermOfUse";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
+const apiUrlGetCategories = process.env.REACT_APP_API + "category";
 function App() {
-  
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    fetch(apiUrlGetCategories)
+      .then((res) => res.json())
+      .then((data) => setCategories(data));
+    return () => {
+      setCategories([]);
+    };
+  }, []);
   return (
     <Router>
       <Container fluid className="main">
         <Header />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home categories={categories} />
           </Route>
-          
-          <Route exact path="/products">
+          <Route exact path="/all-category">
             <NavMenu />
             <Product />
           </Route>
-          <Route path="/products/:id">
-            <NavMenu />
-            <ProductDetail />
-          </Route>
+          <Route path="/products/:id" children={<ProductDetail />}></Route>
+          <Route path="/all-category/:id" children={<Product />}></Route>
           <Route path="/account">
-            <NavMenu />
             <SignIn />
           </Route>
           <Route path="/terms-of-use">
