@@ -1,78 +1,76 @@
 import React from "react";
-import { Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+// import { Col } from "react-bootstrap";
 import styled from "styled-components";
 import ImgSlider from "../components/Home/ImgSlider";
-import Viewers from "../components/Home/Viewers";
 import IconMenu from "../components/Home/IconMenu";
 import Trend from "../components/Home/Content/Trend";
-import Listcategory from "../components/Home/ListCategory";
 import CategoryTabList from "../components/Home/Content/CategoryTabList";
 import PartnerSlider from "../components/Home/PartnerSlider";
 
+function Home({ categories }) {
+  document.title = "Nhà sách trực tuyến Fahasa";
 
-const tabList = [
-  {
-    id: 1,
-    title: "Sách giáo khoa cấp i",
-  },
-  {
-    id: 2,
-    title: "Sách giáo khoa cấp ii",
-  },
-  {
-    id: 3,
-    title: "Sách giáo khoa cấp iii",
-  },
-  {
-    id: 4,
-    title: "An toàn phòng chống dịch",
-  },
-  {
-    id: 5,
-    title: "Thiếu nhi",
-  },
-  {
-    id: 6,
-    title: "Đồ chơi",
-  },
-  {
-    id: 7,
-    title: "Văn học",
-  },
-  {
-    id: 8,
-    title: "Kinh tế",
-  },
-  {
-    id: 9,
-    title: "Tâm lý - Kỹ năng",
-  },
-  {
-    id: 10,
-    title: "Văn phòng phẩm",
-  },
-];
-const catParents = tabList.map((item) => {
-  return <CategoryTabList key={item.id} title={item.title} id={item.id} />;
-});
-
-function Home() {
-  document.title="Nhà sách trực tuyến Fahasa";
   return (
     <ContainerMain>
       <Wrap className="row">
-        <Listcategory className="col-lg-3 list-mobile-hidden" />
-        <Col className="col-lg-9">
-          <ImgSlider />
-        </Col>
+        {/* Category list Start */}
+        <div className="col-lg-3 list-mobile-hidden">
+          <div className="title"> Danh Mục Sản Phẩm</div>
+          <div className="DMSP">
+            <ul style={{ padding: "0" }}>
+              {categories
+                .filter((c) => c.parentId === null)
+                .slice(0, 9)
+                .map((item) => (
+                  <li key={item.id}>
+                    <Link to={`/all-category/${item.id}`} className="dropdown">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        </div>
+        {/* Category list End */}
+
+        {/* Slider */}
+        <ImgSlider />
       </Wrap>
-      <Viewers />
+      <div className="banner">
+        <div className="inner-item">
+          <img src="/images/viewers-disney.png" alt="" />
+        </div>
+        <div className="inner-item">
+          <img src="/images/viewers-pixar.png" alt="" />
+        </div>
+        <div className="inner-item">
+          <img src="/images/viewers-marvel.png" alt="" />
+        </div>
+        <div className="inner-item">
+          <img src="/images/viewers-national.png" alt="" />
+        </div>
+      </div>
       <IconMenu />
       <Trend
-        titleName="Xu hướng mua sắm"
-        iconTitle="/images/icons/ico_dealhot.png"
+        data={categories.filter(
+          (c) => c.id === 62 || c.id === 63 || c.id === 64 || c.id === 65
+        )}
       />
-      {catParents}
+      {/* Start Tab product by category */}
+      {categories
+        .filter((c) => c.parentId === null)
+        .slice(0, 9) // lọc ds các danh mục cha
+        .map((item) => (
+          <CategoryTabList
+            title={item.name}
+            id={item.id}
+            key={item.id}
+            data={categories}
+          />
+        ))}
+
+      {/* End tab product by category */}
       <PartnerSlider />
     </ContainerMain>
   );
@@ -87,6 +85,41 @@ const Wrap = styled.div`
       display: none;
     }
   }
+  .DMSP {
+    max-height: 340px;
+  }
+  .title {
+    background-color: #f7941e;
+    min-height: 42px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    font-size: 20px;
+  }
+  li {
+    background-color: white;
+    display: block;
+    width: 100%;
+    list-style-type: none;
+    list-style-position: inside;
+    &:hover {
+      background-color: #fcdab0;
+    }
+  }
+  a {
+    display: flex;
+    font-size: 15px;
+    text-decoration: none;
+    color: #444;
+    padding: 10.85px 12px;
+
+    i {
+      position: absolute;
+      right: 10px;
+      bottom: 13px;
+    }
+  }
 `;
 
 const ContainerMain = styled.main`
@@ -94,5 +127,26 @@ const ContainerMain = styled.main`
   padding: 0 calc(3.5vw + 5px);
   //position: relative;
   overflow-x: hidden;
+  .banner {
+    margin-top: 30px;
+    display: grid;
+    grid-gap: 25px;
+    padding: 30px 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    .inner-item {
+      border-radius: 10px;
+      transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      &:hover {
+        transform: scale(1.05);
+        border-color: rgb(249, 249, 249, 0.8);
+        box-shadow: rgb(0 0 0 / 80%) 0px 40px 58px -16px,
+          rgb(0 0 0 / 72%) 0px 30px 22px -10px;
+      }
+    }
+  }
 `;
-

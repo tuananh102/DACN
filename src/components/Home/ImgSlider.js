@@ -14,26 +14,28 @@ function ImgSlider() {
       {
         breakpoint: 992,
         settings: {
-          speed:500,
+          speed: 500,
           slidesToShow: 1,
           slidesToScroll: 1,
-          autoplay:true,
+          autoplay: true,
         },
       },
     ],
   };
   return (
-    <Carousel {...settings}>
-      <Wrap>
-        <img src="/images/muonkiepnhansinh.jpg" alt="" />
-      </Wrap>
-      <Wrap>
-        <img src="/images/phienchodocu.png" alt="" />
-      </Wrap>
-      <Wrap>
-        <img src="/images/DC-main.png" alt="" />
-      </Wrap>
-    </Carousel>
+    <div className="col-lg-9">
+      <Carousel {...settings}>
+        <Wrap>
+          <img src="/images/muonkiepnhansinh.jpg" alt="" />
+        </Wrap>
+        <Wrap>
+          <img src="/images/phienchodocu.png" alt="" />
+        </Wrap>
+        <Wrap>
+          <img src="/images/DC-main.png" alt="" />
+        </Wrap>
+      </Carousel>
+    </div>
   );
 }
 
@@ -47,7 +49,7 @@ const Carousel = styled(Slider)`
   .slick-prev {
     left: 15px;
   }
-  .slick-next{
+  .slick-next {
     right: 15px;
   }
   button {
@@ -55,7 +57,6 @@ const Carousel = styled(Slider)`
     height: 34px;
     z-index: 1;
   }
-
 `;
 
 const Wrap = styled.div`

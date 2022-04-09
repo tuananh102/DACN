@@ -1,117 +1,118 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function IconMenu() {
   return (
     <Wrap className="row">
       <div className="col">
         <div>
-          <a href="/#">
+          <Link to="/all-category/61">
             <img
               src="/images/icons/ico_flashsale.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Flash Sale</div>
       </div>
       <div className="col ">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_PCSC.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Phiên chợ sách cũ</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/62">
             <img
               src="/images/icons/ico-xuhuong.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Xu hướng</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_covid-2.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Heath Care</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_vpp_hot.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Văn phòng phẩm</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_goiy.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Gợi ý cho bạn</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_game_hub.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Fahasa Games</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_dochoi.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Đồ chơi</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/4">
             <img
               src="/images/icons/ico_mgg.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Mã giảm giá</div>
       </div>
       <div className="col">
         <div>
-          <a href="/#">
+         <Link to="/all-category/6">
             <img
               src="/images/icons/ico_manga.png"
               alt=""
             />
-          </a>
+          </Link>
         </div>
         <div className="cms-icon-menu-item-name">Manga-Comic</div>
       </div>

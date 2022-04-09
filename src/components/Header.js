@@ -158,7 +158,7 @@ const Nav = styled.nav`
     .logo-header {
       img {
         width: 100%;
-        padding: 20px 20px 30px 20px;
+        padding: 30px;
       }
     }
     .search-bar {

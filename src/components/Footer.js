@@ -42,35 +42,35 @@ function Footer() {
               <a
                 href="https://facebook.com/tuananh6696"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-facebook-f" aria-hidden="true"></i>
               </a>
               <a
                 href="https://www.instagram.com/hnanuat102/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" aria-hidden="true"></i>
               </a>
               <a
                 href="https://twitter.com/TunAnh26860268"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-twitter" aria-hidden="true"></i>
               </a>
               <a
                 href="https://www.pinterest.com/trannhutuananh96/?autologin=true"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-pinterest" aria-hidden="true"></i>
               </a>
               <a
                 href="https://www.youtube.com/channel/UCX6vhJiIhC3OVjeEJ9uChsg"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-youtube" aria-hidden="true"></i>
               </a>
@@ -157,7 +157,7 @@ function Footer() {
                 <a
                   href="https://g.page/fahasa6062?share"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   <span>&nbsp;60-62 Lê Lợi, Q.1, TP. HCM</span>
                 </a>

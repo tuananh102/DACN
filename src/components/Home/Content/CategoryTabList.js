@@ -1,110 +1,137 @@
 import React from "react";
 import styled from "styled-components";
+import Slider from "react-slick";
+import NumberFormat from "react-number-format";
+
 import { Tabs, Tab, TabList, TabPanel } from "react-tabs";
-import ProductSlider from "./ProductSlider";
+import { Link } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
-const categoryChildData = [
-  {
-    id: 1,
-    name: "Lớp 1",
-    parentId: 1,
-  },
-  {
-    id: 2,
-    name: "Lớp 2",
-    parentId: 1,
-  },
-  {
-    id: 3,
-    name: "Lớp 3",
-    parentId: 1,
-  },
-  {
-    id: 4,
-    name: "Lớp 4",
-    parentId: 1,
-  },
-  {
-    id: 5,
-    name: "Lớp 5",
-    parentId: 1,
-  },
-  {
-    id: 6,
-    name: "Lớp 6",
-    parentId: 2,
-  },
-  {
-    id: 7,
-    name: "Lớp 7",
-    parentId: 2,
-  },
-  {
-    id: 8,
-    name: "Lớp 8",
-    parentId: 2,
-  },
-  {
-    id: 9,
-    name: "Lớp 9",
-    parentId: 3,
-  },
-  {
-    id: 10,
-    name: "Lớp  10",
-    parentId: 3,
-  },
-  {
-    id: 11,
-    name: "Lớp 11",
-    parentId: 3,
-  },
-  {
-    id: 12,
-    name: "Lớp 12",
-    parentId: 3,
-  },
-  {
-    id: 13,
-    name: "Khẩu trang",
-    parentId: 4,
-  },
-  {
-    id: 14,
-    name: "Nước rửa tay - Xà phòng",
-    parentId: 4,
-  },
+function CategoryTabList({ id, title, data }) {
+  // Setting of slider
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 2,
+        },
+      },
+    ],
+  };
 
-];
-
-function CategoryTabList(props) {
-  const listChild = categoryChildData
-  .filter((categoryChildData) => props.id === categoryChildData.parentId)
-  .map((item) => {
-    return <Tab key={item.id}>{item.name}</Tab>;
-  });
-  const listProduct = categoryChildData
-  .filter((categoryChildData) => props.id === categoryChildData.parentId)
-  .map(
-      (item) => {
-        // if ((item.parentId) === (props.id)) {
-        return (
-          <TabPanel key={item.id}>
-            <ProductSlider id={item.id} />
-            <div className="read-more">
-              <a href="/#">Xem thêm</a>
-            </div>
-          </TabPanel>
-        );
-      }
-      // }
-    );
   return (
-    <Wrap key={props.id}>
+    <Wrap key={id}>
       <Tabs>
-        <Title>{props.title}</Title>
-        <TabList>{listChild}</TabList>
-        {listChild && listProduct}
+        <Title>{title}</Title>
+        <TabList>
+          {data
+            .filter((category) => id === category.parentId)
+            .map((item) => (
+              <Tab key={item.id}>{item.name}</Tab>
+            ))}
+        </TabList>
+        {data
+          .filter((category) => id === category.parentId)
+          .map((item) => (
+            <TabPanel key={item.id}>
+              {/* <ProductSlider id={item.id} /> */}
+              <Slider {...settings}>
+                {item.books.map((book) => (
+                  <div key={book.id} className="inner-item" title={book.name}>
+                    <div className="img-item">
+                      <Link to={`/products/${book.id}`}>
+                        {book.images && (
+                          <img
+                            src={"/images/products/" + book.images[0]}
+                            alt={book.name}
+                          />
+                        )}
+                      </Link>
+                    </div>
+                    <div className="name-item">
+                      <h2 className="product-name-seo">
+                        <Link to={`/products/${book.id}`}>{book.name}</Link>
+                      </h2>
+                    </div>
+                    <div className="price-product">
+                      <div>
+                        <span className="price">
+                          <NumberFormat
+                            value={book.salePrice ? book.salePrice : book.price}
+                            displayType="text"
+                            thousandSeparator={true}
+                            suffix=" đ"
+                          />
+                        </span>
+                        {book.salePrice && (
+                          <span className="discount-percent">
+                            {Math.round(
+                              100 - (book.salePrice / book.price) * 100
+                            ) + "%"}
+                          </span>
+                        )}
+                      </div>
+                      <span
+                        className="delete-price"
+                        style={
+                          book.salePrice
+                            ? {}
+                            : { visibility: "hidden", height: "15px" }
+                        }
+                      >
+                        <NumberFormat
+                          value={book.price}
+                          displayType="text"
+                          thousandSeparator={true}
+                          suffix=" đ"
+                        />
+                      </span>
+                    </div>
+                    <div className="rating-container">
+                      <div className="rating-star">
+                        {[...Array(5)].map((star, index) => {
+                          const ratingValue = index + 1;
+                          return (
+                            <FaStar
+                              size="12"
+                              key={index}
+                              color={
+                                ratingValue <= book.starRating
+                                  ? "#F7941E"
+                                  : "#e4e5e9"
+                              }
+                            />
+                          );
+                        })}
+                        <span className="star-point">
+                          &nbsp;({book.reviewNumbers || 0})
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+              <div className="read-more">
+                <Link to={`/all-category/${item.id}`}>Xem thêm</Link>
+              </div>
+            </TabPanel>
+          ))}
       </Tabs>
     </Wrap>
   );
@@ -117,7 +144,8 @@ const Wrap = styled.section`
     background-color: #fff;
   }
   .react-tabs__tab {
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 5px;
     &:hover {
       color: #f7931e;
       border-radius: 5px;
@@ -154,9 +182,10 @@ const Wrap = styled.section`
       margin: 10px;
       border: 1px solid #f0f0f0;
       position: relative;
-      padding: 0;
+      padding-left: 10px;
+
       overflow: hidden;
-      text-align: center;
+      text-align: start;
       .label-sale {
         position: absolute;
         width: 44px;
@@ -185,13 +214,13 @@ const Wrap = styled.section`
         }
       }
       .product-name-seo {
+        padding-top: 3px;
         height: 2rem;
         a {
           overflow: hidden;
           font-size: 15px;
           text-decoration: none;
           text-align: start;
-          padding-left: 10px;
           color: inherit;
           font-weight: 400;
           display: -webkit-box;
@@ -202,6 +231,9 @@ const Wrap = styled.section`
       .price-product {
         display: flex;
         flex-direction: column;
+        div {
+          display: flex;
+        }
         .price {
           line-height: 1.65rem;
           font-size: 1.25rem !important;
@@ -221,6 +253,14 @@ const Wrap = styled.section`
           color: #888888;
           text-decoration: line-through;
           font-size: 13px;
+        }
+      }
+      .rating-container {
+        text-align: start;
+        .star-point {
+          font-size: 14px;
+          color: #f7941e;
+          user-select: none;
         }
       }
     }
@@ -260,13 +300,13 @@ const Wrap = styled.section`
     background: url("/images/fa-angle-right_32_8_8e8c8c_none.png") no-repeat
       100% 100% !important;
     right: -5px;
-    z-index: 5!important;
+    z-index: 5 !important;
   }
   .slick-prev {
     background: url("/images/fa-angle-left_32_8_8e8c8c_none.png") no-repeat 100%
       100% !important;
     left: -5px;
-    z-index: 5!important;
+    z-index: 5 !important;
   }
 
   .slick-next,
@@ -288,8 +328,10 @@ const Wrap = styled.section`
 const Title = styled.div`
   text-transform: uppercase;
   font-size: 17px;
-  font-weight: 500;
-  padding: 10px 15px;
+  font-weight: 700;
+  margin-left: 20px;
+  padding: 20px 15px 0;
+  color: #333;
   img {
     padding: 0 15px;
   }

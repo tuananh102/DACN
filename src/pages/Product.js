@@ -1,468 +1,58 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Collapse } from "react-bootstrap";
 import NumberFormat from "react-number-format";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import Slug from "../features/Slug";
 import { FaStar } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
+import NavMenu from "../features/NavMenu"
 
-var apiUrl = "https://localhost:7030/api/book";
-
-const tabs = [
-  [
-    "sachtrongnuoc",
-    "Sách trong nước",
-    [
-      {
-        id: 1,
-        title: "Văn học",
-        list: [
-          "Tiểu thuyết",
-          "Truyện ngắn - Tản văn",
-          "Light Novel",
-          "Ngôn tình",
-        ],
-      },
-      {
-        id: 2,
-        title: "Kinh tế",
-        list: [
-          "Nhân vật - Bài học Kinh doanh",
-          "Quản trị - Lãnh đạo",
-          "Marketing - Bán hàng",
-          "Phân tích Kinh tế",
-        ],
-      },
-      {
-        id: 3,
-        title: "Tâm lý - Kỹ năng sống",
-        list: [
-          "Kỹ năng sống",
-          "Rèn luyện nhân cách",
-          "Tâm lý",
-          "Sách cho tuổi mới lớn",
-        ],
-      },
-      {
-        id: 4,
-        title: "Nuôi dạy con",
-        list: [
-          "Cẩm nang làm cha mẹ",
-          "Phương pháp giáo dục trẻ các nước",
-          "Phát triển trí tuệ cho trẻ",
-          "Phát triển kỹ năng cho trẻ",
-        ],
-      },
-      {
-        id: 5,
-        title: "Sách thiếu nhi",
-        list: [
-          "Manga - Comic",
-          "Kiến thức Bách khoa",
-          "Sách tranh Kỹ năng sống cho trẻ",
-          "Vừa học - Vừa chơi với trẻ",
-        ],
-      },
-      {
-        id: 6,
-        title: "Tiểu sử - hồi ký",
-        list: [
-          "Câu chuyện cuộc đời",
-          "Chính trị",
-          "Kinh tế",
-          "Nghệ thuật - Giải trí",
-        ],
-      },
-      {
-        id: 7,
-        title: "Giáo khoa - Tham khảo",
-        list: [
-          "Sách Giáo khoa",
-          "Sách tham khảo",
-          "Luyện thi ĐH, CĐ",
-          "Mẫu giáo",
-        ],
-      },
-      {
-        id: 8,
-        title: "Học Ngoại ngữ",
-        list: ["Tiếng Anh", "Tiếng Trung", "Tiếng Nhật", "Tiếng Hàn"],
-      },
-    ],
-  ],
-  [
-    "foreignbooks",
-    "FOREIGN BOOKS",
-    [
-      {
-        id: 1,
-        title: "Fiction",
-        list: ["Contempotary", "Romance", "Fantasy", "Classics"],
-      },
-      {
-        id: 2,
-        title: "Business & Management",
-        list: ["Business & Management", "Economics", "Finance & Accounting"],
-      },
-      {
-        id: 3,
-        title: "Personal development",
-        list: [
-          "Popular Psychology",
-          "Advice On Careers & Achieving Success",
-          "Personal Fiance",
-        ],
-      },
-      {
-        id: 4,
-        title: "Children's Books",
-        list: [
-          "Picture & Activity Books",
-          "Fiction (for Kids & Teen",
-          "Education",
-          "Non-Fiction",
-        ],
-      },
-      {
-        id: 5,
-        title: "Dictionaries & Languages",
-        list: [
-          "ELT: Learning Material & Coursework",
-          "ELT: English for special purposes",
-          "Dictionaries",
-        ],
-      },
-      {
-        id: 6,
-        title: "Other Languages",
-        list: ["Japanese Books", "German Books", "French Books"],
-      },
-      {
-        id: 7,
-        title: "Other categories",
-        list: [
-          "Biography",
-          "Society & Social Sciences",
-          "Science & Geography",
-          "Food & Drink",
-        ],
-      },
-    ],
-  ],
-  [
-    "vpp-dchs",
-    "VPP - Dụng cụ học sinh",
-    [
-      {
-        id: 1,
-        title: "Bút - Viết",
-        list: [
-          "Bút bi - Ruột bút bi",
-          "Bút gel - Bút nước",
-          "Bút mực - Bút máy",
-          "Bút dạ quang",
-          "Bút chì - ruột bút chì",
-        ],
-      },
-      {
-        id: 2,
-        title: "Dụng cụ học sinh",
-        list: [
-          "Gôm - Tẩy",
-          "Gôm bút chì",
-          "Thước",
-          "Bóp viết - Hộp bút",
-          "Bộ dụng cụ học tập",
-        ],
-      },
-      {
-        id: 3,
-        title: "Dụng cụ văn phòng",
-        list: [
-          "Bìa - File hồ sơ",
-          "Kẹp giấy - Kẹp bướm",
-          "Đồ bấm kim - Kim bấm - Gỡ kim",
-          "Cắm bút - Bảng tên",
-        ],
-      },
-      {
-        id: 4,
-        title: "Dụng cụ vẽ",
-        list: ["Bút vẽ", "Màu vẽ", "Khay - Cọ vẽ", "Tập vẽ - Giấy vẽ"],
-      },
-      {
-        id: 5,
-        title: "Sản phẩm khác",
-        list: [
-          "Dao rọc giấy - Kéo",
-          "Băng keo - Cắt băng keo",
-          "Bút xóa nước - Xóa kéo",
-          "Hồ dán",
-        ],
-      },
-      {
-        id: 6,
-        title: "Sản phẩm điện tử",
-        list: ["Máy tính bỏ túi"],
-      },
-    ],
-  ],
-  [
-    "dochoi",
-    "Đồ chơi",
-    [
-      {
-        id: 1,
-        title: "Đồ chơi nổi bật",
-        list: [
-          "Xếp hình - Lắp ghép",
-          "Đồ chơi giáo dục",
-          "Đồ chơi điều khiển",
-          "Board Game",
-        ],
-      },
-      {
-        id: 2,
-        title: "Phương tiện các loại",
-        list: ["Ô tô", "Máy bay", "Tàu hỏa", "Tàu thủy", "Phương tiện khác"],
-      },
-      {
-        id: 3,
-        title: "Mô hình các loại",
-        list: [
-          "Mô hình giấy",
-          "Mô hình gỗ",
-          "Mô hình nhân vật",
-          "Mô hình động vật",
-        ],
-      },
-      {
-        id: 4,
-        title: "Đồ chơi theo phim",
-        list: [
-          "My little Pony",
-          "Paw Patrol",
-          "Super Wings",
-          "Chiến thần vô cực - NADO",
-        ],
-      },
-      {
-        id: 5,
-        title: "Đồ chơi khác",
-        list: [
-          "Bột nặn - Cát nặn",
-          "Búp bê",
-          "Thú bông",
-          "Hướng nghiệp nhập vai",
-        ],
-      },
-    ],
-  ],
-  [
-    "lamdep-suckhoe",
-    "Làm đẹp - Sức khỏe",
-    [
-      {
-        id: 1,
-        title: "Làm đẹp - Sức khỏe",
-        list: [
-          "Khẩu Trang Các Loại",
-          "Nước Rửa Tay - Xà Phòng",
-          "Băng Keo Cá Nhân",
-          "Khăn Giấy - Giấy Ướt",
-          "Chăm Sóc Cá Nhân Khác",
-          "Sản Phẩm Làm Đẹp",
-        ],
-      },
-    ],
-  ],
-  [
-    "hanhtrangdentruong",
-    "Hành trang đến trường",
-    [
-      {
-        id: 1,
-        title: "Sách giáo khoa",
-        list: [
-          "Lớp 1",
-          "Lớp 2",
-          "Lớp 3",
-          "Lớp 4",
-          "Lớp 5",
-          "Lớp 6",
-          "Lớp 7",
-          "Lớp 8",
-          "Lớp 9",
-          "Lớp 10",
-          "Lớp 11",
-          "Lớp 12",
-        ],
-      },
-      {
-        id: 2,
-        title: "Sách tham khảo",
-        list: [
-          "Mẫu giáo",
-          "Lớp 1",
-          "Lớp 2",
-          "Lớp 3",
-          "Lớp 4",
-          "Lớp 5",
-          "Lớp 6",
-          "Lớp 7",
-          "Lớp 8",
-          "Lớp 9",
-          "Lớp 10",
-          "Lớp 11",
-          "Lớp 12",
-        ],
-      },
-      {
-        id: 3,
-        title: "Luyện thi THPT-QG-Lớp 12",
-        list: [
-          "Luyện Thi Môn Toán",
-          "Luyện Thi Môn Ngữ Văn",
-          "Luyện Thi Môn Tiếng Anh ",
-          "Luyện Thi Môn Vật Lý",
-          "Luyện Thi Môn Hóa Học",
-          "Luyện Thi Môn Sinh Học",
-          "Luyện Thi Môn Địa Lý",
-          "Luyện Thi Môn Lịch Sử",
-        ],
-      },
-      {
-        id: 4,
-        title: "Đồ nghề đến trường",
-        list: [
-          "Cặp , Ba Lô",
-          "Máy Tính",
-          "Bút Các Loại",
-          "Bóp Viết - Hộp Bút",
-          "Tập Vở ",
-          "Bao Tập - Bao Sách",
-          "Mực",
-          "Gôm - Tẩy",
-          "Gọt Bút Chì",
-          "Compa",
-          "Bảng Viết - Bông Lau Bảng",
-          "Phấn - Hộp Đựng Phấn",
-        ],
-      },
-    ],
-  ],
-  [
-    "vpp-dchs-th",
-    "VPP - DCHS theo thương hiệu",
-    [
-      {
-        id: 1,
-        title: "VPP - DCHS theo thương hiệu",
-        list: [
-          "Thiên Long",
-          "Thương Hiệu Hàn Quốc - Morning Glory",
-          "Thương Hiệu Hàn Quốc - Kyobo",
-          "Thương Hiệu Nhật - Kinokuniya",
-          "Thương Hiệu Nhật - Artline",
-          "Thương Hiệu Nhật - Marvy",
-          "Thương Hiệu Tây Ban Nha - Milan",
-          "Thương Hiệu Tây Ban Nha - Apli",
-          "Thương Hiệu Anh Quốc - Helix",
-          "Thương Hiệu Đức - Faber-Castell",
-          "Thương Hiệu Đức - Stabilo",
-          "Thương Hiệu Pháp - Maped",
-          "Thương Hiệu Indonesia - Bantex",
-        ],
-      },
-    ],
-  ],
-  [
-    "dochoi-th",
-    "Đồ chơi theo thương hiệu",
-    [
-      {
-        id: 1,
-        title: "",
-        list: [
-          "Lego",
-          "tiNiToy",
-          "Lắp Ráp DUKA",
-          "Lắp Ráp Sluban",
-          "Lắp Ráp LaQ",
-          "Mô Hình Gỗ DIY - Robotime",
-          "Đồ Chơi VBCare",
-          "Hot Wheels",
-          "Play-Doh",
-          "Barbie",
-        ],
-      },
-    ],
-  ],
-  [
-    "bhol-ln",
-    "Bách hóa online - Lưu niệm",
-    [
-      {
-        id: 1,
-        title: "Đồ dùng cá nhân",
-        list: [
-          "Túi - Ví Thời Trang",
-          "Đồng Hồ",
-          "Phụ Kiện Du Lịch",
-          "Phụ Kiện Tóc",
-        ],
-      },
-      {
-        id: 2,
-        title: "Đồ điện gia dụng",
-        list: ["Đèn Bàn", "Đèn Ngủ ", "Đèn Pin", "Pin & Dụng Cụ Sạc Pin"],
-      },
-      {
-        id: 3,
-        title: "Nhà cửa - đời sống",
-        list: [
-          "Ly, Cốc, Bình Nước",
-          " Hộp Đựng Đồ Cá Nhân",
-          " Trang Trí Nhà Cửa",
-          " Sửa Chữa Nhà Cửa",
-        ],
-      },
-      {
-        id: 4,
-        title: "Lưu niệm",
-        list: [
-          "Móc Khóa",
-          "Gương - Lược",
-          "Khung Hình",
-          "Tượng",
-          "Quà Tặng Trang Trí Khác",
-        ],
-      },
-      {
-        id: 5,
-        title: "Sản phẩm khác",
-        list: ["Thực Phẩm", "Thiết Bị Số - Phụ Kiện Số", "Quạt Các Loại"],
-      },
-    ],
-  ],
-];
+const apiUrlGetBook = process.env.REACT_APP_API + "book";
+const apiUrlGetCategories = process.env.REACT_APP_API + "category";
 
 function Product() {
+  const { id } = useParams();
+  const categoryId = parseInt(id);
   document.title = "Danh mục sản phẩm";
+  const [initialProducts, setinitialProducts] = useState([]);
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [categoryIdTheme, setCategoryIdTheme] = useState(categoryId);
   const [openGenres, setOpenGenres] = useState(false);
   const [openBrands, setOpenBrands] = useState(false);
   const [coverForm, setCoverForm] = useState(false);
   const [viewProducts, setViewProducts] = useState(12);
   const [pageNumber, setPageNumber] = useState(0);
   const refViewProducts = useRef("");
-
   useEffect(() => {
-    fetch(apiUrl)
+    fetch(apiUrlGetBook)
       .then((response) => response.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setinitialProducts(data);
+      });
+      return () => {
+        setinitialProducts([]); // This worked for me
+      };
   }, []);
+  useEffect(() => {
+    fetch(apiUrlGetCategories)
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
+  }, []);
+  useEffect(() => {
+    fetch(apiUrlGetCategories + "/"+ categoryId)
+      .then((response) => response.json())
+      .then((data) => setProducts(data.books));
+      return () => {
+        setProducts([]); // This worked for me
+      };
+  }, [categoryId]);
+
+
+  const handleProduct = (i) => {
+    setProducts(i.books);
+    setCategoryIdTheme(i.id);
+  };
 
   const pageView = products.slice(
     pageNumber * viewProducts,
@@ -474,24 +64,64 @@ function Product() {
   };
   const pageChange = ({ selected }) => {
     setPageNumber(selected);
-    window.scrollTo(0, 100);
+    window.scrollTo(0, 150);
   };
+
   return (
     <Wrap>
+      <NavMenu />
       <div className="product-container row">
         <div className="filter col-lg-3">
           <dl>
             <dt className="title">Nhóm sản phẩm</dt>
           </dl>
           <dl>
-            <dt className="title">
-              <Link to="/">All Category</Link>
+            <dt>
+              <div
+                onClick={() =>{ setProducts(initialProducts);
+                setCategoryIdTheme(0)}}
+                className={`category_name ${categoryIdTheme===0?"active":""}`}
+              >
+                All Category
+              </div>
             </dt>
-            {tabs.map((item) => (
-              <dd key={item[1]}>
-                <Link to={`/${Slug(item[1])}`}>{item[1]}</Link>
-              </dd>
-            ))}
+            {categories
+              .filter((c) => c.parentId == null)
+              .slice(0, 9)
+              .map((item) => (
+                <dd key={item.id}>
+                  <div
+                    id={item.id}
+                    className={`category_name ${item.id === categoryIdTheme ? "active":""}`}
+                    onClick={() => {
+                      handleProduct(item);
+                      setPageNumber(0);
+                      window.scrollTo(0, 150);
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                  <ul className="category_children">
+                    {categories
+                      .filter((c) => c.parentId === item.id)
+                      .map((i) => (
+                        <li key={i.id}>
+                          <div
+                            
+                            onClick={() => {
+                              handleProduct(i);
+                              setPageNumber(0);
+                              window.scrollTo(0, 150);
+                            }}
+                            className={`category_name ${i.id === categoryIdTheme ? "active":""}`}
+                          >
+                            {i.name}
+                          </div>
+                        </li>
+                      ))}
+                  </ul>
+                </dd>
+              ))}
           </dl>
           <hr />
           <dl className="cost">
@@ -1760,8 +1390,9 @@ function Product() {
                 <div
                   key={item.id}
                   className="inner-item col-lg-3 col-md-4 col-6"
+                  title={item.name}
                 >
-                  {item.price && (
+                  {item.salePrice && (
                     <div className="label-sale">
                       <span className="label-sale-value">
                         {Math.floor(100 - (item.salePrice / item.price) * 100) +
@@ -1772,19 +1403,24 @@ function Product() {
 
                   <div className="img-item">
                     <Link to={`/products/${item.id}`}>
-                      <img src={"/images/products/"+ item.img} alt={item.name} />
+                      {item.images && (
+                        <img
+                          src={"/images/products/" + item.images[0]}
+                          alt={item.name}
+                        />
+                      )}
                     </Link>
                   </div>
                   <div className="name-item">
                     <h2 className="product-name-seo">
-                      <a href="/#">{item.name}</a>
+                      <Link to={`/products/${item.id}`}>{item.name}</Link>
                     </h2>
                   </div>
                   <div className="price-product">
                     <div>
                       <span className="price">
                         <NumberFormat
-                          value={item.salePrice}
+                          value={item.salePrice || item.price}
                           displayType="text"
                           thousandSeparator={true}
                           suffix=" đ"
@@ -1794,9 +1430,9 @@ function Product() {
                     <span
                       className="delete-price"
                       style={
-                        item.price
+                        item.salePrice
                           ? {}
-                          : { visibility: "visible", height: "15px" }
+                          : { visibility: "hidden", height: "15px" }
                       }
                     >
                       <NumberFormat
@@ -1816,24 +1452,34 @@ function Product() {
                             size="12"
                             key={index}
                             color={
-                              ratingValue <= item.starRating ? "#F7941E" : "#e4e5e9"
+                              ratingValue <= item.starRating
+                                ? "#F7941E"
+                                : "#e4e5e9"
                             }
                           />
                         );
                       })}
-                      <span className="star-point">({item.countRating})</span>
+                      <span className="star-point">
+                        ({item.reviewNumbers || 0})
+                      </span>
                     </div>
                   </div>
-                  <div className="status-container">
-                    <div
-                      className="status"
-                      style={
-                        item.status === 0 ? { backgroundColor: "#FCDAB0" } : {}
-                      }
-                    >
-                      <span>{item.status === 0 ? "Sắp có hàng" : ""}</span>
+                  {item.status === 1 ? (
+                    <span></span>
+                  ) : (
+                    <div className="status-container">
+                      <div
+                        className="status"
+                        style={
+                          item.status === 0
+                            ? { backgroundColor: "#FCDAB0" }
+                            : {}
+                        }
+                      >
+                        <span>{item.status === 0 ? "Sắp có hàng" : ""}</span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -1864,6 +1510,26 @@ const Wrap = styled.section`
     display: flex;
     justify-content: space-around;
     .filter {
+      .category_name {
+        cursor: pointer;
+        &:hover {
+          color: #bf9a61;
+        }
+      }
+      .category_name.active{
+        color: #bf9a61;
+      }
+      .category_children {
+        margin-left: 20px;
+        font-size: 14px;
+        li {
+          padding: 2px 0px;
+          cursor: pointer;
+          &:hover {
+            color: #bf9a61;
+          }
+        }
+      }
       padding: 10px;
       background-color: #fff;
       box-shadow: 0px 0px 2px 1px rgb(0 0 0 / 10%);

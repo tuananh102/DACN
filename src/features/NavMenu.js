@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState, memo} from "react";
 import { Button, Collapse } from "react-bootstrap";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -448,10 +448,10 @@ function NavMenu() {
   const [listContent, setListContent] = useState([]);
   const [listCategory, setListCategory] = useState("");
   const [open, setOpen] = useState(false);
-
   useEffect(() => {
     const list = tabs.filter((tab) => tab[0] === listCategory);
     setListContent(list);
+    return ()=> setListContent([]);
   }, [listCategory]);
   let displayContent = open ? "list-content-container row" : "none";
   return (
@@ -485,7 +485,7 @@ function NavMenu() {
         <div className="col-lg-9 icon-nav list-content">
           <div className="icon-nav-container">
             <div className="flash-sale">
-              <Link to="flashsale">
+              <Link to="/all-category/61">
                 <img src="/images/icons/ico_flashsale.png" alt="" />
                 Flash Sale
               </Link>
@@ -497,7 +497,7 @@ function NavMenu() {
               </Link>
             </div>
             <div className="trend">
-              <Link to="xuhuong">
+              <Link to="/all-category/62">
                 <img src="/images/icons/ico-xuhuong.png" alt="" />
                 Xu hướng
               </Link>
@@ -557,7 +557,7 @@ function NavMenu() {
   );
 }
 
-export default NavMenu;
+export default memo(NavMenu);
 const Wrap = styled.section`
   background-color: white;
   padding: 0 calc(3.5vw + 5px);

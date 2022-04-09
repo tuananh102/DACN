@@ -1,99 +1,31 @@
 import React from "react";
 import NumberFormat from "react-number-format";
+import NavMenu from "../features/NavMenu";
+
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { FaStar, FaMinus, FaPlus } from "react-icons/fa";
 import BtnReadMore from "../features/BtnReadMore";
 import { Collapse } from "react-bootstrap";
-const products = [
-  {
-    id: 1,
-    name: "I-Learn Smart Start 1 - Sách Giáo Khoa Tiếng Anh Lớp 1",
-    supplier: "Công ty TNHH Education Solutions Việt Nam",
-    publishsingCompany: "NXB Đại Học Sư Phạm",
-    author: "Nhiều Tác Giả",
-    coverForm: "Bìa mềm",
-    series: null,
-    catid: 1,
-    src: [
-      "/images/products/1.jpg",
-      "/images/products/1.1.jpg",
-      "/images/products/1.2.jpg",
-      "/images/products/1.3.jpg",
-      "/images/products/1.4.jpg",
-      "/images/products/1.5.jpg",
-    ],
-    price: 78000,
-    delPrice: null,
-    creatAt: null,
-    star: 4,
-    countRating: 112,
-    yearPublished: 2020,
-    weight: 190,
-    size: [28, 20, 0.5],
-    pageNumbers: 71,
-    description: [
-      "Bộ SGK Tiếng Anh i-Learn Smart Start là bộ giáo trình Tiếng Anh tiểu học 5 cấp độ (lớp 1-lớp 5), được thiết kế chuyên biệt dành riêng cho lớp học Việt Nam.",
-      "Bộ sách được phối hợp biên soạn bởi các tác giả quốc tế, các giảng viên uy tín và hàng trăm giáo viên Tiếng Anh đang giảng dạy bộ giáo trình này tại Việt Nam. i-Learn Smart Start chính là sự kết hợp nhuần nhuyễn giữa kinh nghiệm quốc tế và nhu cầu giảng dạy thực tế của Việt Nam, đáp ứng đầy đủ khung chương trình và các tiêu chí đánh giá của Bộ Giáo Dục và Đào Tạo.",
-    ],
-    salientFetures: [
-      "Bám sát khung chương trình giảng dạy Tiếng Anh của Bộ Giáo dục & Đào tạo",
-      "Nội dung phong phú và hiện đại, mở rộng các yếu tố văn hóa, giá trị đạo đức",
-      "Cấu trúc bài học rõ ràng, nhất quán: giúp học sinh dễ theo dõi; giáo viên chuẩn bị bài giảng nhanh chóng và hiệu quả",
-      "Liên thông 12 cấp độ từ Tiểu học lên Trung học với bộ giáo trình i-Learn Smart World",
-      "Tài liệu hấp dẫn với các bài hát vui nhộn, hình ảnh sinh động, trò chơi lôi cuốn phù hợp với lứa tuổi học sinh",
-    ],
-  },
-  {
-    id: 2,
-    name: "Lãnh đạo mất thăng bằng",
-    supplier: "Công ty TNHH Education Solutions Việt Nam",
-    publishsingCompany: "NXB Đại Học Sư Phạm",
-    author: "Nhiều Tác Giả",
-    coverForm: "Bìa mềm",
-    series: null,
-    catid: 1,
-    src: [
-      "/images/products/1.jpg",
-      "/images/products/1.1.jpg",
-      "/images/products/1.2.jpg",
-      "/images/products/1.3.jpg",
-      "/images/products/1.4.jpg",
-      "/images/products/1.5.jpg",
-    ],
-    price: 78000,
-    delPrice: null,
-    creatAt: null,
-    star: 4,
-    countRating: 112,
-    yearPublished: 2020,
-    weight: 190,
-    size: [28, 20, 0.5],
-    pageNumbers: 71,
-    description: [
-      "Bộ SGK Tiếng Anh i-Learn Smart Start là bộ giáo trình Tiếng Anh tiểu học 5 cấp độ (lớp 1-lớp 5), được thiết kế chuyên biệt dành riêng cho lớp học Việt Nam.",
-      "Bộ sách được phối hợp biên soạn bởi các tác giả quốc tế, các giảng viên uy tín và hàng trăm giáo viên Tiếng Anh đang giảng dạy bộ giáo trình này tại Việt Nam. i-Learn Smart Start chính là sự kết hợp nhuần nhuyễn giữa kinh nghiệm quốc tế và nhu cầu giảng dạy thực tế của Việt Nam, đáp ứng đầy đủ khung chương trình và các tiêu chí đánh giá của Bộ Giáo Dục và Đào Tạo.",
-    ],
-    salientFetures: [
-      "Bám sát khung chương trình giảng dạy Tiếng Anh của Bộ Giáo dục & Đào tạo",
-      "Nội dung phong phú và hiện đại, mở rộng các yếu tố văn hóa, giá trị đạo đức",
-      "Cấu trúc bài học rõ ràng, nhất quán: giúp học sinh dễ theo dõi; giáo viên chuẩn bị bài giảng nhanh chóng và hiệu quả",
-      "Liên thông 12 cấp độ từ Tiểu học lên Trung học với bộ giáo trình i-Learn Smart World",
-      "Tài liệu hấp dẫn với các bài hát vui nhộn, hình ảnh sinh động, trò chơi lôi cuốn phù hợp với lứa tuổi học sinh",
-    ],
-  },
-];
+
+const apiBookUrl = process.env.REACT_APP_API + "book/";
 
 function ProductDetail() {
+  const [product, setProduct] = useState([]);
   const [readMore, setReadMore] = useState(false);
-  const [product, setProduct] = useState(0);
+  const [thumbnail, setThumbnail] = useState(0);
   const [count, setCount] = useState(1);
   const { id } = useParams();
   const productId = parseInt(id);
-  const bigImg = (index) => {
-    setProduct(index);
-  };
+  window.scrollTo(0,0);
+  useEffect(() => {
+    fetch(apiBookUrl + productId)
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      });
+  }, [productId]); 
   const decreCount = () => {
     if (count >= 2) {
       setCount(count - 1);
@@ -103,222 +35,236 @@ function ProductDetail() {
     setCount(count + 1);
   };
   const inputChangeHandler = (e) => {};
+  if (product) {
+    document.title = product.name;
+  }
   return (
     <Wrap>
-      {products
-        .filter((proId) => proId.id === productId)
-        .map((item) => {
-          document.title=item.name;
-          return(
-          <ProductContent key={item.id}>
-            <div className="row main-view">
-              <div className="col-lg-5 img-container">
-                <div className="big-img">
-                  <img src={item.src[product]} alt="" />
-                </div>
-                <div className="small-img">
-                  {item.src.map((itemImg, index) => (
-                    <div key={index}>
-                      <img src={itemImg} alt="" onClick={() => bigImg(index)} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="col-lg-7 details">
-                <div className="row product-title">
-                  <h1>{item.name}</h1>
-                </div>
-                <div className="row props-details">
-                  <div className="col-8">
-                    {item.supplier && (
-                      <div>
-                        Nhà cung cấp: <strong>{item.supplier}</strong>
+      <NavMenu />
+      {
+        <ProductContent>
+          <div className="row main-view">
+            <div className="col-lg-5 img-container">
+              <div className="row">
+                <div className="small-img col-md-2">
+                  {product.images &&
+                    product.images.map((item, index) => (
+                      <div key={index}>
+                        <img
+                          src={"/images/products/" + item}
+                          alt=""
+                          onClick={() => setThumbnail(index)}
+                        />
                       </div>
-                    )}
-                    <div>
-                      Nhà xuất bản:
-                      <strong>{item.publishsingCompany}</strong>
-                    </div>
-                    {item.series && (
-                      <div>
-                        Bộ: <a href="/#">{item.series} </a>
-                      </div>
-                    )}
-                    <div className="rating-container">
-                      <div
-                        className="rating-star"
-                        onClick={() => window.scrollTo(0, 1000)}
-                      >
-                        {[...Array(5)].map((star, index) => {
-                          const ratingValue = index + 1;
-                          return (
-                            <FaStar
-                              size="12"
-                              key={index}
-                              color={
-                                ratingValue <= item.star ? "#F7941E" : "#e4e5e9"
-                              }
-                            />
-                          );
-                        })}
-                        <span className="star-point">
-                          ({item.countRating} đánh giá)
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div>
-                      Tác giả: <strong>{item.author}</strong>
-                    </div>
-                    <div>
-                      Hình thức bìa: <strong>{item.coverForm}</strong>
-                    </div>
-                  </div>
+                    ))}
                 </div>
-                <div className="price-container">
-                  <span className="price">
-                    <NumberFormat
-                      value={item.price}
-                      displayType="text"
-                      thousandSeparator={true}
-                      suffix=" đ"
+                <div className="big-img col-md-10 col-sm-12">
+                  {product.images && (
+                    <img
+                      src={"/images/products/" + product.images[thumbnail]}
+                      alt={product.name}
                     />
-                  </span>
-                  &nbsp;
-                  <span className="delete-price">
-                    <NumberFormat
-                      value={item.delPrice}
-                      displayType="text"
-                      thousandSeparator={true}
-                      suffix=" đ"
-                    />
-                  </span>
-                  {item.delPrice && (
-                    <span className="discount-percent">
-                      -{Math.floor(100 - (100 * item.price) / item.delPrice)}%
-                    </span>
                   )}
                 </div>
-                <div className="quantity">
-                  <span>Số lượng: </span>
-                  <div className="add-minus-quantity">
-                    <FaMinus onClick={decreCount} color="gray" size="13px" />
-                    <input
-                      type="text"
-                      value={`${count}`}
-                      onChange={(e) => inputChangeHandler(e)}
-                      name="quantity"
-                    />
-                    <FaPlus onClick={increCount} color="gray" size="13px" />
+              </div>
+            </div>
+            <div className="col-lg-7 details">
+              <div className="row product-title">
+                <h1>{product.name}</h1>
+              </div>
+              <p>{product.shortDescription}</p>
+
+              <div className="row props-details">
+                <div className="col-8">
+                  {product.supplier && (
+                    <div>
+                      Nhà cung cấp: <strong>{product.supplier}</strong>
+                    </div>
+                  )}
+                  <div>
+                    Nhà xuất bản:
+                    <strong>{product.publisher}</strong>
+                  </div>
+                  {product.series && (
+                    <div>
+                      Bộ: <a href="/#">{product.series} </a>
+                    </div>
+                  )}
+                  <div className="rating-container">
+                    <div
+                      className="rating-star"
+                      onClick={() => window.scrollTo(0, 1000)}
+                    >
+                      {[...Array(5)].map((star, index) => {
+                        const ratingValue = index + 1;
+                        return (
+                          <FaStar
+                            size="12"
+                            key={index}
+                            color={
+                              ratingValue <= product.starRating
+                                ? "#F7941E"
+                                : "#e4e5e9"
+                            }
+                          />
+                        );
+                      })}
+                      <span className="star-point">
+                        ({product.reviewNumbers || 0} đánh giá)
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="shopandcart">
-                  <div className="add-cart">
-                    <a href="/#">
-                      <i className="fas fa-cart-plus"></i>&nbsp;Thêm vào giỏ
-                      hàng
-                    </a>
+                <div className="col">
+                  <div>
+                    Tác giả: <strong>{product.author}</strong>
                   </div>
-                  <div className="shop-now">
-                    <a href="/#"> Mua ngay</a>
+                  <div>
+                    Hình thức bìa: <strong>{product.coverForm}</strong>
                   </div>
+                </div>
+                <div
+                  className="fb-like"
+                  data-href="https://developers.facebook.com/docs/plugins/"
+                  data-width=""
+                  data-layout="standard"
+                  data-action="like"
+                  data-size="small"
+                  data-share="true"
+                ></div>
+              </div>
+              <div className="price-container">
+                <span className="price">
+                  <NumberFormat
+                    value={product.salePrice ? product.salePrice : product.price}
+                    displayType="text"
+                    thousandSeparator={true}
+                    suffix=" đ"
+                  />
+                </span>
+                &nbsp;
+                {
+                  product.salePrice && <span className="delete-price">
+                  <NumberFormat
+                    value={product.price}
+                    displayType="text"
+                    thousandSeparator={true}
+                    suffix=" đ"
+                  />
+                </span>
+                }
+                {product.salePrice && (
+                  <span className="discount-percent">
+                    -
+                    {Math.floor(100 - (100 * product.salePrice) / product.price)}
+                    %
+                  </span>
+                )}
+              </div>
+
+              <div className="quantity">
+                <span>Số lượng: </span>
+                <div className="add-minus-quantity">
+                  <FaMinus onClick={decreCount} color="gray" size="13px" />
+                  <input
+                    type="text"
+                    value={`${count}`}
+                    onChange={(e) => inputChangeHandler(e)}
+                    name="quantity"
+                  />
+                  <FaPlus onClick={increCount} color="gray" size="13px" />
+                </div>
+              </div>
+              <div className="shopandcart">
+                <div className="add-cart">
+                  <a href="/#">
+                    <i className="fas fa-cart-plus"></i>&nbsp;Thêm vào giỏ hàng
+                  </a>
+                </div>
+                <div className="shop-now">
+                  <a href="/#"> Mua ngay</a>
                 </div>
               </div>
             </div>
-            <div className="product-details">
-              <h5>Thông tin sản phẩm</h5>
-              <table className="table table-borderless">
-                <colgroup>
-                  <col width="25%"></col>
-                </colgroup>
-                <tbody>
-                  <tr>
-                    <th scope="row">Mã hàng</th>
-                    <td>{item.id}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Cấp độ/Lớp</th>
-                    <td>Lớp 1</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Cấp học</th>
-                    <td>Cấp 1</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Nhà cung cấp</th>
-                    <td>{item.supplier}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Tác giả</th>
-                    <td>{item.author}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">NXB</th>
-                    <td>{item.publishsingCompany}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Năm Xuất bản</th>
-                    <td>{item.yearPublished}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Trọng lượng (gr)</th>
-                    <td>{item.weight}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Kích Thước Bao Bì</th>
-                    <td>
-                      {item.size && item.size[0] +
-                        " x " +
-                        item.size[1] +
-                        " x " +
-                        item.size[2]}
-                      cm
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Số trang</th>
-                    <td>{item.pageNumbers}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Hình thức</th>
-                    <td>{item.coverForm}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Sản phẩm hiển thị trong</th>
-                    <td>{item.catid}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Sản phẩm bán chạy nhất</th>
-                    <td>Top 100 sản phẩm Giáo Khoa Lớp 1 bán chạy của tháng</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div className="description">
-                <h5>Mô tả chi tiết</h5>
-                {item.description.map((descript) => (
-                  <p key={descript}>{descript}</p>
-                ))}
-              </div>
-              <div className="salient-features">
-                <h5>Các điểm nổi bật</h5>
-                <Collapse in={readMore}>
-                  <div id="features">
-                    {item.salientFetures.map((salient) => (
-                      <p key={salient}>{salient}</p>
+          </div>
+          <div className="product-details">
+            <h5>Thông tin sản phẩm</h5>
+            <table className="table table-borderless">
+              <colgroup>
+                <col width="25%"></col>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th scope="row">Mã hàng</th>
+                  <td>{product.id}</td>
+                </tr>
+               
+                <tr>
+                  <th scope="row">Nhà cung cấp</th>
+                  <td>{product.supplier}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tác giả</th>
+                  <td>{product.author}</td>
+                </tr>
+                <tr>
+                  <th scope="row">NXB</th>
+                  <td>{product.publisher}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Năm Xuất bản</th>
+                  <td>{product.yearPublished}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Trọng lượng (gr)</th>
+                  <td>{product.weight}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Kích Thước Bao Bì</th>
+                  <td>{product.size} cm</td>
+                </tr>
+                <tr>
+                  <th scope="row">Số trang</th>
+                  <td>{product.pageNumbers}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hình thức</th>
+                  <td>{product.coverForm}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sản phẩm hiển thị trong</th>
+                  <td>
+                  {product.categoryNames &&
+                    product.categoryNames.map((item, index) => (
+                      <p key={index}>
+                        {item}
+                      </p>
                     ))}
-                  </div>
-                </Collapse>
-                <BtnReadMore
-                  title={readMore ? "Rút gọn" : "Xem thêm"}
-                  onClick={() => setReadMore(!readMore)}
-                  aria-controls="features"
-                  aria-expanded={readMore}
-                />
-              </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Sản phẩm bán chạy nhất</th>
+                  <td>Top 100 sản phẩm {product.categoryNames && product.categoryNames[0]} bán chạy của tháng</td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="description">
+              <h5>Mô tả chi tiết</h5>
+              <Collapse in={readMore}>
+                <div id="features">
+                  <p>{product.fullDescription}</p>
+                </div>
+              </Collapse>
+              <BtnReadMore
+                title={readMore ? "Rút gọn" : "Xem thêm"}
+                onClick={() => setReadMore(!readMore)}
+                aria-controls="features"
+                aria-expanded={readMore}
+              />
             </div>
-          </ProductContent>
-        )})}
+          </div>
+        </ProductContent>
+      }
     </Wrap>
   );
 }
@@ -330,6 +276,9 @@ const Wrap = styled.section``;
 const ProductContent = styled.div`
   margin: 0 calc(3.5vw + 5px);
   .main-view {
+    .fb-like {
+      width: 50%;
+    }
     padding: 10px;
     //max-height: 500px;
     background-color: white;
@@ -337,35 +286,42 @@ const ProductContent = styled.div`
     margin: 20px 0;
     .img-container {
       .small-img {
-        margin: 20px 0;
-        width: 100%;
-        height: 90px;
+        width: 80px;
+        padding: 20px 0 0 10px;
+        height: auto;
         display: flex;
+        flex-direction: column;
         cursor: pointer;
-        justify-content: space-around;
-        div:hover {
-          border: 1px solid #2489f4;
-          border-radius: 5px;
-        }
+        justify-content: flex-start;
+
         img {
           max-width: 100%;
-          max-height: 100%;
-          border-radius: inherit;
+          margin: 10px 0;
+          &:hover {
+            border: 1px solid blue;
+            border-radius: 5px;
+          }
+        }
+        @media (max-width: 740px) {
+          display: none;
         }
       }
       .big-img {
         max-width: 100%;
         height: auto;
         overflow: hidden;
+        padding: 20px;
         img {
-          width: 100%;
-          height: 100%;
+          max-width: 100%;
+          height: auto;
         }
       }
     }
     .details {
       .product-title h1 {
+        padding-top: 20px;
         font-size: 1.5em;
+
         font-weight: 600;
         color: #333;
         line-height: 1.5em;
